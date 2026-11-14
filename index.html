@@ -11,7 +11,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
   <script src="https://kit.fontawesome.com/be050517f7.js" crossorigin="anonymous"></script>
   <script src="main.js" defer></script>
-  <title>상업시설</title>
+  <title>풍무 해링턴 플레이스</title>
 </head>
 <body>
   <!-- Navbar -->
@@ -31,79 +31,96 @@
     </ul>
   </nav> 
 
-  <!-- Perspective -->
-  <section id="perspective" class="section">    
-    <img src="img/1793256023758.png" class="fade__img active" alt="투시도1">
-    <img src="img/about_slide01.png" class="fade__img" alt="투시도2">
-    <span class="perspecDesc">계양 3기신도시의 4,403세대 항아리 상권 프리미엄<br> - 계양 카이브 유보라</span>
-
-    <!-- <div class="popup__contact">
-      <img src="img/meta-story.png" alt="">
-      <button type="button" class="btn-close">창 닫기 ×</button>
-    </div> -->
+  <!-- Home -->
+  <section id="perspective">    
+      <img src="img/1793256023758.png" class="fade__img active" alt="투시도1">
+      <img src="img/about_slide01.png" class="fade__img" alt="투시도2">
+    <span class="perspecDesc">계양 카이브 유보라<br> 아파트 & 상업시설 선착순 분양 </span>
   </section>
   
-  <!-- Comercial facilities -->
-  <section id="facilities" class="section">
-    <div class="main__img" id="main__img">
-        <img src="img/premium-01.jpg" class="main__imgItem 1" alt="메인 이미지1">
-    </div>
-    <div class="section__container">
-      <div class="facilities__content">
-        <h2 class="facilities__description">계양 AX파크 첨단산업단지와<br>계양 3기 신도시 아파트 단지 배후의 24시 상권</h2>
-        <h1 class="facilities__title">가양 카이브 유보라</h1>
+  <!-- Unit plan -->
+  <section id="unit__plan" class="section">    
+    <!-- <div class="section__container unit">      -->
+      <div class="unit__plan">
+        <div class="slide__wrap">
+          <img src="img/84a.png" alt="84a평면도" class="slideItem unit1">
+          <img src="img/84b.png" alt="84b평면도" class="slideItem unit2">
+          <img src="img/84c.png" alt="84c평면도" class="slideItem unit3">
+          <img src="img/84d.png" alt="84d평면도" class="slideItem unit4">
+          <img src="img/84e.png" alt="84e평면도" class="slideItem unit5">
+          <img src="img/92a.png" alt="92a평면도" class="slideItem unit6">
+          <img src="img/93a.png" alt="93a평면도" class="slideItem unit7">
+          <img src="img/93b.png" alt="93b평면도" class="slideItem unit8">
+        </div>
+        </div>
+        <div class="btn__container">
+          <button class="slide__Btn preBtn">
+            <i class="fa-solid fa-chevron-right"></i>
+          </button>
+          <button class="slide__Btn nextBtn">
+            <i class="fa-solid fa-chevron-left"></i>
+          </button>
+          <ul class="slide__pagination"></ul>
+        </div>
       </div>
-      
-    </div>
+    <!-- </div> -->
   </section>
 
-  <!-- Location -->
-  <section id="location" class="section">
-    <div class="section__container">
-      <img class="location" src="img/location.jpg" alt="">
+  <!-- Home -->
+  <section id="home" class="section">
+    <div class="main__img" id="main__img">
+        <div class="main__imgItem"></div>
     </div>
+    <div class="section__container">
+      
+    </section>
+    
+    
+    <!-- Location -->
+    <section id="location" class="section">
+      <div class="section__container location">
+        <img class="locationImg" alt="">
+        <div class="locationDesc">
+          <h2 class="home__description">서울 지하철 5호선 연장 예타 통과, <br>더블 역세권 대단지 프리미엄</h2>
+          <h1 class="home__title">풍무 해링턴플레이스</h1>
+        </div>
+    </div>
+
+    <!-- <div class="popup__contact">
+        <img src="img/meta-story.png" alt="">
+        <button type="button" class="btn-close">창 닫기 ×</button>
+      </div>
+    </div> -->
   </section>
 
   
   <!-- Premium -->
-  <section id="premium" class="section">
-    <div class="section__container">
-      <article class="premium">
-        <h3>메리트 분석</h3>
-        <h2>풍무 해링턴플레이스 프리미엄</h2>
-        <p>계약금 3천만 원으로 내 집 마련 기회 !<br>
-          계약금 5% 납부로 2028년 8월 입주까지 간다 !!<br>비규제지역 자금부담 끝~~</p>
-        <div class="about__environment">
-          <div class="environment">
-            <div class="environment__icon">
-              <img class="env__img" src="img/premium_2.jpg" alt="">
-            </div>
-            <div class="environment__title">베스트 교육</div>
-            <div class="environment__description">학업성취도 높은 단지 앞 <br>양도중, 도보권 풍무초,<br />
-              인근 김포고, 사우고 등 김포 명문학군<br />
-              접근성 양호한 유명 학원가
-            </div>
+  <section id="premium">
+    <article class="premium-section">
+      <div class="premium-slider" id="premiumSlider">
+        <div class="premium-track" id="premiumTrack">
+          <!-- 슬라이드는 JS에서 생성 -->
+        </div>
+
+        <!-- 네비게이션 -->
+        <div class="premium-nav">
+          <button class="nav-btn prev" id="prevBtn" aria-label="이전">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <div class="premium-count">
+            <span id="currentNum">01</span>
+            <span class="divider">/</span>
+            <span id="totalNum">08</span>
           </div>
-            <div class="environment">
-              <div class="environment__icon">
-                <img class="env__img" src="img/premium_1.jpg" alt="">
-              </div>
-              <div class="environment__title">서울 접근성</div>
-              <div class="environment__description">서울 지하철 5호선 연장 예타 확정<br />
-                더욱 가까워지는 서울 교통망,<br />최상 수혜지, 풍무 역세권</div>
-            </div>
-            <div class="environment">
-              <div class="environment__icon">
-                <img class="env__img" src="img/premium_3.jpg" alt="">
-              </div>
-              <div class="environment__title">생활 인프라</div>
-              <div class="environment__description">이마트 트레이더스, 홈플러스, CGV 등<br />
-                풍무역세권 중심상권<br />인하대학교 김포메디컬캠퍼스(예정), 풍무 국민체육센터, 새장터공원 등
-              </div>
-            </div>
-          </div>
-      </article>      
-    </div>
+          <button class="nav-btn next" id="nextBtn" aria-label="다음">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+    </article>
   </section>
   
   <!-- Complex -->
@@ -126,30 +143,7 @@
     </div>
   </section>
 
-  <!-- Unit plan -->
-  <section id="unit__plan" class="section">    
-    <div class="section__container unit">     
-      <div class="unit__plan">
-        <div class="slide__wrap">
-          <img src="img/74a_unit.jpg" alt="74a평면도" class="slideItem unit1">
-          <img src="img/74b_unit.jpg" alt="74b평면도" class="slideItem unit2">
-          <img src="img/74c_unit.jpg" alt="74평면도" class="slideItem unit3">
-          <img src="img/84a_unit.jpg" alt="84a평면도" class="slideItem unit4">
-          <img src="img/84b_unit.jpg" alt="84b평면도" class="slideItem unit5">
-          <img src="img/84c_unit.jpg" alt="84c평면도" class="slideItem unit6">
-        </div>
-        <div class="btn__container">
-          <button class="slide__Btn preBtn">
-            <i class="fa-solid fa-chevron-right"></i>
-          </button>
-          <button class="slide__Btn nextBtn">
-            <i class="fa-solid fa-chevron-left"></i>
-          </button>
-          <ul class="slide__pagination"></ul>
-        </div>
-      </div>
-    </div>
-  </section>
+  
 
   <!-- Contact -->
   <section id="contact" class="section">
