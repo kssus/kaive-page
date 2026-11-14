@@ -219,7 +219,7 @@ p {
 
 /* Location */
 #location {
-  height: 900px;
+  height: 1090px;
 }
 
 /* .location {
@@ -227,35 +227,28 @@ p {
   position: relative;
 } */
 
-.locationDesc {
-  
+.locationDesc {  
   text-align: center;
-  color: var(--color-white);
+  color: var(--color-black);
 }
 
 .locationImg {
-  position: relative;
-  top: 140px;
-  height: 100vh;
-  width: 100%;
-  background: url("img/environment.png") no-repeat;
-  object-fit : cover;
+  height: 100%;
+  width: 1560px;
 }
 
 
 /* Premium */
-
-/* .premium-section {
+.premium-section {
   width: 100%;
+  height: 100%;
   max-width: 1680px;
-  padding: 40px 20px;
-} */
+}
 
 .premium-slider {
   position: relative;
   width: 100%;
   overflow: hidden;
-  /* border-radius: 16px; */
 }
 
 .premium-track {
@@ -268,13 +261,9 @@ p {
 .premium-slide {
   flex: 0 0 100%;
   display: grid;
-  grid-template-columns: 1.15fr 1fr;
-  min-height: 520px;
+  grid-template-columns: 1.8fr 1fr;
+  min-height: 620px;
   background: #16332c;
-}
-
-.premium-slide.clone {
-  /* 복제본 표시용 (선택) */
 }
 
 /* 왼쪽 이미지 영역 */
@@ -433,7 +422,7 @@ p {
 /* Unit Plan */
 #unit__plan {
   height: 830px;
-  background: var(--color-basic) url("img/unit_bg.jpg") no-repeat;
+  background: var(--color-basic) url("img/unit_bgc.jpg") no-repeat;
   overflow: hidden;
 }
 
@@ -458,8 +447,8 @@ p {
   flex: 0 0 397px;
   height: 455px;
   display: flex;
-  border: 5px solid var(--color-fandango);
-  border-bottom: 30px solid var(--color-fandango);
+  border: 5px solid var(--color-grey);
+  border-bottom: 30px solid var(--color-grey);
   transition: transform 0.3s ease-out, opacity 0.3s ease-out;
   transform: scale(0.9);
 }
@@ -476,7 +465,7 @@ p {
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  background-color:  var(--color-fandango);
+  background-color:  var(--color-grey);
   left: 40px;
   z-index: 20;
 }
@@ -486,7 +475,7 @@ p {
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  background-color:  var(--color-fandango);
+  background-color:  var(--color-grey);
   right: 40px;
   z-index: 20;
 }

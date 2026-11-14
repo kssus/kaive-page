@@ -24,7 +24,7 @@ document.addEventListener('scroll', () => {
 
 // Phone display
 
-const home = document.querySelector('#home');
+const home = document.querySelector('#perspective');
 const homeHeight = home.getBoundingClientRect().height;
 
 const phone_box = document.querySelector('.phone_box');
