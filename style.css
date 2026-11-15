@@ -219,22 +219,118 @@ p {
 
 /* Location */
 #location {
-  height: 1090px;
+  max-height: 100%;
 }
-
-/* .location {
-  display: flex;
-  position: relative;
-} */
 
 .locationDesc {  
   text-align: center;
   color: var(--color-black);
+  padding: 60px 0 0;
+}
+
+.location__title {
+  font-size: var(--font-medium);
+  font-weight: var(--weight-bold);
+  color: var(--color-black);
+}
+
+.location__description {
+  font-size: var(--font-regular);
+  font-weight: var(--weight-semi-bold);
+  color: var(--color-shade-grey);
+}
+
+.location-map {
+  display: flex;
+  object-fit: cover;
+  overflow: hidden;
+  padding: 10px 0 30px;
 }
 
 .locationImg {
-  height: 100%;
-  width: 1560px;
+  max-height: 100%;
+  max-width: 100%;
+}
+
+/* Site layout plan */
+.slider {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  /* border-radius: 12px; */
+}
+
+.slider-track {
+  display: flex;
+  transition: transform 0.5s ease;
+  overflow: hidden;
+  padding: 60px 0;
+}
+
+.slide {
+  flex: 0 0 100%;
+}
+
+.slide img {
+  width: 100%;
+  max-height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* 버튼 */
+.layoutBtn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  font-size: 28px;
+  cursor: pointer;
+  z-index: 10;
+  transition: background 0.2s;
+}
+
+.layoutBtn:hover {
+  background: rgba(0, 0, 0, 0.75);
+}
+
+.prev__Btn {
+  left: 16px;
+}
+
+.prev__Btn {
+  right: 16px;
+}
+
+/* 닷 */
+.dots {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.2s;
+}
+
+.dot.active {
+  background: #fff;
 }
 
 
@@ -242,20 +338,18 @@ p {
 .premium-section {
   width: 100%;
   height: 100%;
-  max-width: 1680px;
+  /* max-width: 1680px; */
 }
 
 .premium-slider {
   position: relative;
   width: 100%;
-  overflow: hidden;
-}
+  overflow: hidden;}
 
 .premium-track {
   display: flex;
   transition: transform 0.8s cubic-bezier(0.45, 0, 0.2, 1);
-  will-change: transform;
-}
+  will-change: transform;}
 
 /* ===== 개별 슬라이드 ===== */
 .premium-slide {
@@ -263,8 +357,7 @@ p {
   display: grid;
   grid-template-columns: 1.8fr 1fr;
   min-height: 620px;
-  background: #16332c;
-}
+  background: #16332c;}
 
 /* 왼쪽 이미지 영역 */
 .slide-visual {
@@ -422,7 +515,7 @@ p {
 /* Unit Plan */
 #unit__plan {
   height: 830px;
-  background: var(--color-basic) url("img/unit_bgc.jpg") no-repeat;
+  background: var(--color-basic) url("img/unit_bgc.png") no-repeat;
   overflow: hidden;
 }
 

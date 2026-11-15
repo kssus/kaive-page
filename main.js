@@ -190,7 +190,41 @@ const unitPlan = document.querySelector('.unit__plan');
 unitPlan.addEventListener('mouseenter', stopAutoPlay);
 unitPlan.addEventListener('mouseleave', startAutoPlay);
 
-// 프리미엄 8개 슬라이드
+// Site Layout plan
+const track = document.getElementById('track');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+const dots = document.querySelectorAll('.dot');
+
+let current = 0;
+const total = 2;
+
+function goTo(index) {
+  current = index;
+  track.style.transform = `translateX(-${current * 100}%)`;
+
+  dots.forEach((dot, i) => {
+    dot.classList.toggle('active', i === current);
+  });
+}
+
+prevBtn.addEventListener('click', () => {
+  current = current === 0 ? total - 1 : current - 1;
+  goTo(current);
+});
+
+nextBtn.addEventListener('click', () => {
+  current = current === total - 1 ? 0 : current + 1;
+  goTo(current);
+});
+
+dots.forEach((dot) => {
+  dot.addEventListener('click', () => {
+    goTo(Number(dot.dataset.index));
+  });
+});
+
+// Premium 8개 슬라이드
 const PREMIUM_DATA = [
   {
     id: '01',
