@@ -225,7 +225,7 @@ p {
 .locationDesc {  
   text-align: center;
   color: var(--color-black);
-  padding: 60px 0 0;
+  padding: 40px 0 0;
 }
 
 .location__title {
@@ -253,19 +253,22 @@ p {
 }
 
 /* Site layout plan */
-.slider {
+.layout__plan {
+  margin-top: 40px;
+}
+
+.slide-view {
   position: relative;
   width: 100%;
-  max-width: 100%;
   overflow: hidden;
-  /* border-radius: 12px; */
+  padding-bottom: 30px;
+  padding: 20px 0 10px;
 }
 
 .slider-track {
+  padding: 0 0 50px;
   display: flex;
   transition: transform 0.5s ease;
-  overflow: hidden;
-  padding: 60px 0;
 }
 
 .slide {
@@ -281,46 +284,33 @@ p {
 
 /* 버튼 */
 .layoutBtn {
-  position: absolute;
+  position: relative;
   top: 50%;
   transform: translateY(-50%);
-  width: 48px;
-  height: 48px;
-  border: none;
-  border-radius: 50%;
-  background: rgba(0, 0, 0, 0.5);
-  color: #fff;
-  font-size: 28px;
+  text-align: center;
   cursor: pointer;
   z-index: 10;
-  transition: background 0.2s;
 }
 
-.layoutBtn:hover {
-  background: rgba(0, 0, 0, 0.75);
-}
-
-.prev__Btn {
-  left: 16px;
-}
-
-.prev__Btn {
-  right: 16px;
-}
+.layoutBtn.prev { 
+  left: -15px; }
+.layoutBtn.next { 
+  right: -15px; }
 
 /* 닷 */
 .dots {
-  position: absolute;
-  bottom: 16px;
+  position: relative;
+  bottom: 54px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
-  gap: 8px;
+  justify-content: center;
+  gap: 35px;
 }
 
 .dot {
-  width: 10px;
-  height: 10px;
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
   border: none;
   background: rgba(255, 255, 255, 0.4);
@@ -330,7 +320,7 @@ p {
 }
 
 .dot.active {
-  background: #fff;
+  background: rgba(4, 84, 24, 0.5);
 }
 
 

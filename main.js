@@ -192,8 +192,8 @@ unitPlan.addEventListener('mouseleave', startAutoPlay);
 
 // Site Layout plan
 const track = document.getElementById('track');
-const prevBtn = document.getElementById('prevBtn');
-const nextBtn = document.getElementById('nextBtn');
+const prevButton = document.getElementById('prev__Btn');
+const nextButton = document.getElementById('next__Btn');
 const dots = document.querySelectorAll('.dot');
 
 let current = 0;
@@ -208,12 +208,12 @@ function goTo(index) {
   });
 }
 
-prevBtn.addEventListener('click', () => {
+prevButton.addEventListener('click', () => {
   current = current === 0 ? total - 1 : current - 1;
   goTo(current);
 });
 
-nextBtn.addEventListener('click', () => {
+nextButton.addEventListener('click', () => {
   current = current === total - 1 ? 0 : current + 1;
   goTo(current);
 });

@@ -85,25 +85,31 @@
   </section>    
     
    <!-- Site layout plan -->
-  <section class="slider section">
-     <div class="slider-track section__container" id="track">
-       <div class="slide">
-         <img src="img/design_img01.jpg" alt="이미지 1">
-       </div>
-       <div class="slide">
-         <img src="img/design_img02.jpg" alt="이미지 2">
-       </div>
-     </div>
+  <section class="layout section">
+    <h3 class="layout__plan">3블록 & 4블록 배치도</h3>
+    <div class="slide-view section__container">
+      <div class="slider-track " id="track">
+        <div class="slide">
+          <img src="img/design_img01.jpg" alt="이미지 1">
+        </div>
+        <div class="slide">
+          <img src="img/design_img02.jpg" alt="이미지 2">
+        </div>
+      </div> 
 
-     <button class="layoutBtn prev" id="prev__Btn">‹</button>
-     <button class="layoutBtn next" id="next__Btn">›</button>
-
-     <div class="dots">
-       <button class="dot active" data-index="0"></button>
-       <button class="dot" data-index="1"></button>
-     </div>
-   </div>
-
+      <button class="layoutBtn prev" id="prev__Btn" aria-label="이전 슬라이드">
+        <i class="fa-solid fa-arrow-left-long fa-2x"></i>
+      </button>
+      <button class="layoutBtn next" id="next__Btn" aria-label="다음 슬라이드">
+        <i class="fa-solid fa-arrow-right-long fa-2x"></i>
+      </button>
+      
+      <div class="dots">
+        <button class="dot active" data-index="0"></button>
+        <button class="dot" data-index="1"></button>
+      </div>
+    </div>
+  </section>
   
   <!-- Premium -->
   <section id="premium">
