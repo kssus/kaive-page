@@ -252,6 +252,184 @@ p {
   max-width: 100%;
 }
 
+/* Feature */
+.Feature-section {
+  width: 100%;
+  height: 100%;
+  /* max-width: 1680px; */
+}
+
+.Feature-slider {
+  position: relative;
+  width: 100%;
+  overflow: hidden;}
+
+.Feature-track {
+  display: flex;
+  transition: transform 0.8s cubic-bezier(0.45, 0, 0.2, 1);
+  will-change: transform;}
+
+/* ===== 개별 슬라이드 ===== */
+.Feature-slide {
+  flex: 0 0 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 620px;
+  background: #16332c;}
+
+/* 왼쪽 이미지 영역 */
+.slide-visual {
+  position: relative;
+  overflow: hidden;
+}
+
+.slide-visual img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 1.2s cubic-bezier(0.45, 0, 0.2, 1);
+}
+
+.Feature-slide.is-active .slide-visual img {
+  transform: scale(1.04);
+}
+
+.slide-visual::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent 60%, rgba(22, 51, 44, 0.4) 100%);
+  pointer-events: none;
+}
+
+/* 오른쪽 텍스트 영역 */
+.slideContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 48px 56px;
+  background: var(--color-deep-blue);
+}
+
+.Feature-label {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  color: #8fb9a8;
+  margin-bottom: 28px;
+  font-weight: 500;
+}
+
+.Feature-label strong {
+  font-size: 28px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.04em;
+}
+
+.Feature-lead {
+  font-size: 15px;
+  color: #a8cfc0;
+  margin-bottom: 16px;
+  line-height: 1.5;
+}
+
+.Feature-headline {
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1.35;
+  color: #fff;
+  margin-bottom: 24px;
+  word-break: keep-all;
+}
+
+.Feature-headline span {
+  display: block;
+}
+
+.Feature-desc {
+  font-size: 15px;
+  line-height: 1.7;
+  color: #b8d4c8;
+  max-width: 360px;
+}
+
+/* ===== 네비게이션 ===== */
+.Feature-nav {
+  position: absolute;
+  bottom: 32px;
+  right: 40px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  z-index: 20;
+  background: rgba(15, 31, 28, 0.75);
+  backdrop-filter: blur(8px);
+  padding: 10px 16px;
+  border-radius: 40px;
+}
+
+.nav-btn {
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.25s, transform 0.2s;
+}
+
+.nav-btn:hover {
+  background: rgba(255, 255, 255, 0.22);
+  transform: scale(1.06);
+}
+
+.nav-btn:active {
+  transform: scale(0.96);
+}
+
+.Feature-count {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: #fff;
+  min-width: 64px;
+  text-align: center;
+}
+
+.Feature-count .divider {
+  opacity: 0.4;
+  margin: 0 4px;
+}
+
+#curr__Num {
+  color: #7dcea0;
+}
+
+/* Complex */
+#complex {
+  height: 100%;
+}
+
+.complex_plan {
+  padding: 60px 0;
+}
+
+.theme_plan {
+  margin-top: 40px;
+}
+
+.plan2 {
+  margin: 40px 0;
+}
+
 /* Site layout plan */
 .layout__plan {
   margin-top: 40px;
@@ -376,7 +554,7 @@ p {
 }
 
 /* 오른쪽 텍스트 영역 */
-.slide-content {
+.slideContent {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -601,6 +779,7 @@ p {
 
 /* ===== 반응형 ===== */
 @media (max-width: 900px) {
+  /* Premium */
   .premium-slide {
     grid-template-columns: 1fr;
     min-height: auto;
@@ -619,6 +798,31 @@ p {
   }
 
   .premium-nav {
+    bottom: 20px;
+    right: 20px;
+    left: 20px;
+    justify-content: center;
+  }
+
+  /* Feature */
+  .Feature-slide {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+
+  .slideVisual {
+    height: 280px;
+  }
+
+  .slideContent {
+    padding: 32px 28px 80px;
+  }
+
+  .Feature-headline {
+    font-size: 24px;
+  }
+
+  .Feature-nav {
     bottom: 20px;
     right: 20px;
     left: 20px;
@@ -721,6 +925,12 @@ p {
     100% {
       margin-left: 0%;
     }
+  }
+
+  /* Feature */
+  .about__environment {
+    display: flex;
+    flex-direction: column;
   }
 
   /* Premium */
