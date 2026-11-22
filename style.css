@@ -664,9 +664,9 @@ p {
 }
 
 /* Complex */
-#complex {
+/* #complex {
   height: 100%;
-}
+} */
 
 .complex_plan {
   padding: 60px 0;
@@ -674,10 +674,17 @@ p {
 
 .theme_plan {
   margin-top: 40px;
+  max-width: 100%;
 }
 
 .plan2 {
   margin: 40px 0;
+}
+
+.plan1,
+.plan2 {
+  max-width: 100%;
+  object-fit: cover;
 }
 
 /* Unit Plan */
