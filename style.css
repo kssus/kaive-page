@@ -275,15 +275,15 @@ p {
   display: grid;
   grid-template-columns: 1fr 1fr;
   min-height: 620px;
-  background: #16332c;}
+  background: var(--color-shade-grey);}
 
 /* 왼쪽 이미지 영역 */
-.slide-visual {
+.slideVisual {
   position: relative;
   overflow: hidden;
 }
 
-.slide-visual img {
+.slideVisual img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -291,11 +291,11 @@ p {
   transition: transform 1.2s cubic-bezier(0.45, 0, 0.2, 1);
 }
 
-.Feature-slide.is-active .slide-visual img {
+.Feature-slide.is-active .slideVisual img {
   transform: scale(1.04);
 }
 
-.slide-visual::after {
+.slideVisual::after {
   content: '';
   position: absolute;
   inset: 0;
@@ -309,7 +309,7 @@ p {
   flex-direction: column;
   justify-content: center;
   padding: 48px 56px;
-  background: var(--color-deep-blue);
+  background: var(--color-shade-grey);
 }
 
 .Feature-label {
@@ -523,7 +523,7 @@ p {
 .premium-slide {
   flex: 0 0 100%;
   display: grid;
-  grid-template-columns: 1.8fr 1fr;
+  grid-template-columns: 1.5fr 1fr;
   min-height: 620px;
   background: #16332c;}
 
@@ -554,7 +554,7 @@ p {
 }
 
 /* 오른쪽 텍스트 영역 */
-.slideContent {
+.slide-content {
   display: flex;
   flex-direction: column;
   justify-content: center;
