@@ -171,6 +171,7 @@ p {
   top: 0;
   left: 0;
   height: 100vh;
+  max-height: 720px;
 }
 
 .fade__img {
@@ -786,6 +787,11 @@ p {
 
 /* ===== 반응형 ===== */
 @media (max-width: 900px) {
+  /* perspective */
+  /* .perspective {
+    max-height: 450px;
+  } */
+
   /* Premium */
   .premium-slide {
     grid-template-columns: 1fr;
@@ -894,14 +900,14 @@ p {
    }
 
   /* Home */
-  .main__imgItem {
+  /* .main__imgItem {
     background-size: cover;
     background-position: center;
-  }
+  } */
 
   /* Perpective */
   #perspective {
-    height: 100vh;
+    height: 50vh;
   }
 
   .perspecDesc {
@@ -915,8 +921,8 @@ p {
 
   /* Location */
   .location {
-    animation-name: slideIn;
-    animation-duration: 8s;
+    animation: slideIn 12s ease-in-out;
+    /* animation-duration: 10s; */
   }
 
   @keyframes slideIn {
@@ -925,12 +931,12 @@ p {
     }
 
 
-    90% {
-      margin-left: -240%;
+    20% {
+      margin-left: 0%;
     }
 
     100% {
-      margin-left: 0%;
+      margin-left: -120%;
     }
   }
 
@@ -959,7 +965,7 @@ p {
 .unit__plan {
   position: relative;
   right: auto;
-  margin: 350px auto 0;
+  margin: 20px auto 0;
   /* right: 467px;
   margin-top: 350px; */
 }
