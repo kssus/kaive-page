@@ -1,696 +1,309 @@
 'use strict';
 
-// navbar transparent when It is on the top
-const navbar = document.querySelector('#navbar');
-const navbarHeight = navbar.getBoundingClientRect().height;
-
-document.addEventListener('scroll', () => {
-  console.log(window.scrollY);
-  if(window.scrollY > navbarHeight) {
-    navbar.classList.add('navbar--out');
-  } else {
-    navbar.classList.remove('navbar--out');
-  }
-});
-
-document.addEventListener('scroll', () => {
-  console.log(window.scrollY);
-  if(window.scrollY > navbarHeight) {
-    navbar.classList.add('logo--out');
-  } else {
-    navbar.classList.remove('logo--out');
-  }
-});
-
-// Phone display
-
-const home = document.querySelector('#perspective');
-const homeHeight = home.getBoundingClientRect().height;
-
-const phone_box = document.querySelector('.phone_box');
-
-document.addEventListener('scroll', () => {
-  console.log(homeHeight);
-  if(window.scrollY > homeHeight) {
-    phone_box.classList.remove('invisible');
-  } else {
-    phone_box.classList.add('invisible');
-  }
-});
-
-// phone_box.addEventListener('click', () => {
-//   scrollIntoView('#home');
-// });
-
-// click "contact me" button
-// const popupLayer = document.querySelector('.popup__contact');
-// const closeBtn = document.querySelector('.btn-close');
-
-// closeBtn.addEventListener('click', () => {
-//     popupLayer.style.display = 'none';
-// });
-
-// Perspective animation
-
-const images = document.querySelectorAll('.fade__img');
-let currentIndex = 0;
-
-function changeImage() {
-  images[currentIndex].classList.remove('active');
-  currentIndex = (currentIndex + 1) % images.length;
-  images[currentIndex].classList.add('active');
-}
-
-setInterval(changeImage, 5000);
-
-// Feature
 const FEATURE_DATA = [
   {
-    id: '01',
-    image: './img/feature-1.jpg',
-    lead: '서울과 연계된 미래 교통망 계획 ',
+    image: 'img/feature-1.jpg',
+    lead: '서울과 연계된 미래 교통망 계획',
     headline: ['대장홍대선 연장 추진,', '인천 1호선 박촌역'],
     desc: '첨단 계양 AX파크와 계양역을 잇는 대장홍대선 연장과 인천 1호선 박촌역의 지하철 교통망.'
   },
   {
-    id: '02',
-    image: './img/feature-2.jpg',
+    image: 'img/feature-2.jpg',
     lead: '자연 친화적인 쾌적한 3기 신도시',
     headline: ['신개념 선형 녹지축에 조성된', '계양벼리 선형공원'],
     desc: '여의도 공원의 약 4배에 달하는 사람 중심으로 보행 특화된 계양벼리 선형공원.'
   },
   {
-    id: '03',
-    image: './img/feature-3.jpg',
+    image: 'img/feature-3.jpg',
     lead: '약 335만㎡ 첨단 분야 자족도시',
     headline: ['계양AX파크', '대장 도시첨단산업단지'],
-    desc: '판교 4배인 75.7만㎡의 AI 전환 분야 계양AX파크, 56만㎡의 대기업 중심의 첨단 R&D, 제조를 포함하는 부천 도시첨단산업단지 '
+    desc: '판교 4배인 75.7만㎡의 AI 전환 분야 계양AX파크, 56만㎡의 대기업 중심의 첨단 R&D, 제조를 포함하는 부천 도시첨단산업단지'
   },
   {
-    id: '04',
-    image: './img/feature-4.jpg',
+    image: 'img/feature-4.jpg',
     lead: '최첨단 계양AX파크',
     headline: ['AX란?', 'AI Transformation'],
     desc: 'AI연구, 실증, 사업화 및 스타트업 육성, 산학협력 등을 포함하는 AI 용복합 산업 생태계 조성을 중점'
   },
 ];
 
-class FeatureSlider {
-  constructor() {
-    this.p__Track = document.getElementById('p__Track');
-    this.p__Btn = document.getElementById('p__Btn');
-    this.n__Btn = document.getElementById('n__Btn');
-    this.curr__Num = document.getElementById('curr__Num');
-    this.total__Num = document.getElementById('total__Num');
-
-    this.total = FEATURE_DATA.length;
-    this.current = 1;          // 복제본 때문에 1부터 시작
-    this.isAnimating = false;
-    this.autoplayDelay = 4500;
-    this.timer = null;
-
-    this.init();
-  }
-
-  init() {
-    this.renderSlides();
-    this.total__Num.textContent = String(this.total).padStart(2, '0');
-    this.updatePosition(false);
-    this.updateActiveClass();
-    this.bindEvents();
-    this.startAutoplay();
-  }
-
-  renderSlides() {
-    // 마지막 슬라이드 복제본 (맨 앞)
-    const lastClone = this.createSlide(FEATURE_DATA[this.total - 1], true);
-    // 첫 슬라이드 복제본 (맨 뒤)
-    const firstClone = this.createSlide(FEATURE_DATA[0], true);
-
-    const slidesHTML = FEATURE_DATA.map(item => this.createSlide(item)).join('');
-
-    this.p__Track.innerHTML = lastClone + slidesHTML + firstClone;
-    this.slides = [...this.p__Track.children];
-  }
-
-  createSlide(data, isClone = false) {
-    const headlineHTML = data.headline
-      .map(line => `<span>${line}</span>`)
-      .join('');
-
-    return `
-      <article class="Feature-slide${isClone ? ' clone' : ''}" data-id="${data.id}">
-        <div class="slideVisual">
-          <img src="${data.image}" alt="FEATURE ${data.id}" loading="lazy">
-        </div>
-        <div class="slideContent">
-          <div class="Feature-label">
-            <span>FEATURE</span>
-            <strong>${data.id}</strong>
-          </div>
-          <p class="Feature-lead">${data.lead}</p>
-          <h3 class="Feature-headline">${headlineHTML}</h3>
-          <p class="Feature-desc">${data.desc}</p>
-        </div>
-      </article>
-    `;
-  }
-
-  updatePosition(animate = true) {
-    this.p__Track.style.transition = animate
-      ? 'transform 0.8s cubic-bezier(0.45, 0, 0.2, 1)'
-      : 'none';
-
-    this.p__Track.style.transform = `translateX(-${this.current * 100}%)`;
-    this.updateCount();
-  }
-
-  updateCount() {
-    let displayIndex = this.current;
-
-    if (this.current === 0) displayIndex = this.total;
-    if (this.current === this.total + 1) displayIndex = 1;
-
-    this.curr__Num.textContent = String(displayIndex).padStart(2, '0');
-  }
-
-  updateActiveClass() {
-    this.slides.forEach((slide, i) => {
-      slide.classList.toggle('is-active', i === this.current);
-    });
-  }
-
-  goTo(index) {
-    if (this.isAnimating) return;
-    this.isAnimating = true;
-    this.current = index;
-    this.updatePosition(true);
-    this.updateActiveClass();
-  }
-
-  next() {
-    this.goTo(this.current + 1);
-  }
-
-  prev() {
-    this.goTo(this.current - 1);
-  }
-
-  handleTransitionEnd() {
-    this.isAnimating = false;
-
-    // 마지막 복제본 → 실제 첫 번째
-    if (this.current === this.total + 1) {
-      this.current = 1;
-      this.updatePosition(false);
-      this.updateActiveClass();
-    }
-
-    // 첫 복제본 → 실제 마지막
-    if (this.current === 0) {
-      this.current = this.total;
-      this.updatePosition(false);
-      this.updateActiveClass();
-    }
-  }
-
-  bindEvents() {
-    this.n__Btn.addEventListener('click', () => {
-      this.next();
-      this.resetAutoplay();
-    });
-
-    this.p__Btn.addEventListener('click', () => {
-      this.prev();
-      this.resetAutoplay();
-    });
-
-    this.p__Track.addEventListener('transitionend', () => this.handleTransitionEnd());
-
-    // 터치 스와이프
-    let startX = 0;
-
-    this.p__Track.addEventListener('touchstart', (e) => {
-      startX = e.touches[0].clientX;
-      this.stopAutoplay();
-    }, { passive: true });
-
-    this.p__Track.addEventListener('touchend', (e) => {
-      const diff = startX - e.changedTouches[0].clientX;
-      if (Math.abs(diff) > 50) {
-        diff > 0 ? this.next() : this.prev();
-      }
-      this.startAutoplay();
-    });
-
-    // 키보드
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'ArrowRight') {
-        this.next();
-        this.resetAutoplay();
-      }
-      if (e.key === 'ArrowLeft') {
-        this.prev();
-        this.resetAutoplay();
-      }
-    });
-
-    // 호버 시 자동재생 일시정지
-    const p__Slider = document.getElementById('FeatureSlider');
-    p__Slider.addEventListener('mouseenter', () => this.stopAutoplay());
-    p__Slider.addEventListener('mouseleave', () => this.startAutoplay());
-  }
-
-  startAutoplay() {
-    this.stopAutoplay();
-    this.timer = setInterval(() => this.next(), this.autoplayDelay);
-  }
-
-  stopAutoplay() {
-    clearInterval(this.timer);
-  }
-
-  resetAutoplay() {
-    this.stopAutoplay();
-    this.startAutoplay();
-  }
-}
-
-// 실행
-document.addEventListener('DOMContentLoaded', () => {
-  new FeatureSlider();
-});
-
-// Unit Plan
-const sliderWrap = document.querySelector('.slide__wrap');
-let slideItems = document.querySelectorAll('.slideItem');
-
-
-// 계산된 이동 거리: 아이템 너비(390px) + 간결(25)
-const itemswidth = 397;
-const gap = 25;
-const offset = itemswidth + gap; 
-const speed = 300;
-const itemsToClone = 4;
-let isAnimating = false; // 누락된 변수 선언
-
-/* 1. 복제 로직 수정 (정확한 순서로 복제) */
-const originalCount = slideItems.length;
-
-// 3개가 한 화면에 보이므로, 여유 있게 앞뒤로 복제본을 붙임.
-for (let i = 0; i < itemsToClone; i++) {
-  sliderWrap.append(slideItems[i].cloneNode(true));
-}
-for (let i = 1; i <= itemsToClone; i++) {
-  sliderWrap.prepend(slideItems[originalCount - 1 - i].cloneNode(true));
-}
-
-// 복제 후 다시 설정
-slideItems = document.querySelectorAll('.slideItem');
-const totalCount = slideItems.length;
-let currSlide = itemsToClone; // 인덱스 3부터 시작
-
-/* 강조 효과 적용 함수 */
-function updateActive() {
-  slideItems.forEach(item => item.classList.remove('active'));
-
-  let targetIdx = currSlide + 1;
-
-  // 현재 화면 중앙의 아이템 active
-  if (slideItems[targetIdx]) {
-    slideItems[targetIdx].classList.add('active');
-
-  // 위치가 11번(가짜 1번)이라면, 진짜 6번(6)에도 active를 준다.
-  if (currSlide === totalCount - itemsToClone) {
-    slideItems[itemsToClone + 1].classList.add('active');
-    }
-
-  //반대로 가짜 6번(0)이라면, 진짜 6번(6)에도 active를 준다.
-  if (currSlide === 0) {
-    slideItems[totalCount = (itemsToClone * 2) + 1].classList.add('active');
-    }
-  }
-}
-
-
-/* 이동 함수 */
-function moveSlide() {
-  if (isAnimating) return;
-  isAnimating = true;
-
-  sliderWrap.style.transition = `${speed}ms`;
-  sliderWrap.style.transform = `translateX(-${offset * currSlide}px)`;
-  updateActive();
-  
-  setTimeout(() => {
-    isAnimating = false;
-
-     // 무한 루프 체크 (오른쪽 가짜 1,2,3 도달 시)
-    if (currSlide >= totalCount - itemsToClone) {   
-      sliderWrap.style.transition = '0ms';
-      currSlide = itemsToClone;
-      sliderWrap.style.transform = `translateX(-${offset * currSlide}px)`;    
-    }
-
-    // 무한 루프 체크 (왼쪽 가짜 4,5,6 도달 시)
-    if (currSlide <= 0) {   
-      sliderWrap.style.transition = '0ms';
-      currSlide = originalCount;
-      sliderWrap.style.transform = `translateX(-${offset * currSlide}px)`;    
-    } 
-    updateActive();  
-  }, speed);
-}
-  
-// 초기 위치 설정 (앞에 3개이므로 인덱스 3부터 시작)
-sliderWrap.style.transform = `translateX(-${offset * currSlide}px)`;
-updateActive();
-
-let autoPlayInterval;
-
-function startAutoPlay() {
-  stopAutoPlay();
-  // 5000ms(5초)마다 currSlide를 키우고 이동 함.
-  autoPlayInterval = setInterval(() => {
-    if(!isAnimating) {
-      currSlide++;
-      moveSlide();
-    }
-  }, 3000);
-}
-
-function stopAutoPlay() {
-  clearInterval(autoPlayInterval);
-}
-
-// 시작할 때 자동 재생 활성화
-startAutoPlay();
-
-// 수동으로 버튼을 누를 때는 자동 재생을 멈추었다가 다시 시작
-document.querySelector('.nextBtn').addEventListener('click', () => {
-  if (isAnimating) return;
-  stopAutoPlay();
-  currSlide++;
-  moveSlide();
-  startAutoPlay();
-});
-
-document.querySelector('.preBtn').addEventListener('click', () => {
-  if (isAnimating) return;
-  stopAutoPlay();
-  currSlide--;
-  moveSlide();
-  startAutoPlay();
-})
-
-// 마우스를 슬라이더 위에 올리면 멈추고, 때면 다시 시작
-const unitPlan = document.querySelector('.unit__plan');
-unitPlan.addEventListener('mouseenter', stopAutoPlay);
-unitPlan.addEventListener('mouseleave', startAutoPlay);
-
-// Site Layout plan
-const track = document.getElementById('track');
-const prevButton = document.getElementById('prev__Btn');
-const nextButton = document.getElementById('next__Btn');
-const dots = document.querySelectorAll('.dot');
-
-let current = 0;
-const total = 2;
-
-function goTo(index) {
-  current = index;
-  track.style.transform = `translateX(-${current * 100}%)`;
-
-  dots.forEach((dot, i) => {
-    dot.classList.toggle('active', i === current);
-  });
-}
-
-prevButton.addEventListener('click', () => {
-  current = current === 0 ? total - 1 : current - 1;
-  goTo(current);
-});
-
-nextButton.addEventListener('click', () => {
-  current = current === total - 1 ? 0 : current + 1;
-  goTo(current);
-});
-
-dots.forEach((dot) => {
-  dot.addEventListener('click', () => {
-    goTo(Number(dot.dataset.index));
-  });
-});
-
-// Premium 8개 슬라이드
 const PREMIUM_DATA = [
   {
-    id: '01',
-    image: './img/premium-01.jpg',
-    lead: '택지 내 상업시설용지 단 0.9%',
-    headline: ['높은 희소가치', '프리미엄 상업시설'],
-    desc: '계양신도시 내 극히 제한된 상업용지에 들어서는 희소성 높은 프리미엄 상업시설입니다.'
+    image: 'img/premium-01.jpg',
+    lead: '신도시 내 상업용지 비율이 단, 0.9%',
+    headline: ['앵커테넌트 중심의 안정된 상권', '공실 걱정 없는 상업시설'],
+    desc: '계양신도시 내 극히 제한된 아파트 단지 중심의 희소성 높은 프리미엄 상업시설 배치로 안정된 상권입니다.'
   },
   {
-    id: '02',
-    image: './img/premium-02.jpg',
-    lead: '고양 장항에서 검증된',
-    headline: ['반도건설의', '브랜드 몰 시간'],
-    desc: '이미 여러 신도시에서 검증된 반도건설의 브랜드 몰 운영 노하우를 그대로 계양에 이식합니다.'
+    image: 'img/premium-02.jpg',
+    lead: '약 5천여 세대 배후의 안정된 상권',
+    headline: ['반도건설의 특화된', '브랜드 몰 時間'],
+    desc: '신도시 현장에서 검증된 반도건설의 브랜드 몰 MD와 운영 노하우를 그대로 계양에서 선보입니다.'
   },
   {
-    id: '03',
-    image: './img/premium-03.jpg',
-    lead: '탄탄한 상권 형성과 안정화 기여',
-    headline: ['반도건설 직영몰', '운영 관리 (계획)'],
-    desc: '단순 분양이 아닌, 직영 운영을 통해 상권의 안정성과 지속 가능한 성장을 목표로 합니다.'
+    image: 'img/premium-03.jpg',
+    lead: '검증된 반도건설의 마스터리스 혜택',
+    headline: ['반도건설 직영몰', '마스터리스 임대 운영 관리 계획'],
+    desc: '분양과 함께 직영 운영을 통해 상권 활성화로 지속 가능한 상권 성장에 마스터리스가 함께합니다.'
   },
   {
-    id: '04',
-    image: './img/premium-04.jpg',
-    lead: '계양신도시 계획인구 약 4.3만명과 계양AX파크',
-    headline: ['주거와 업무가 만나는', '항아리 상권'],
-    desc: '주거와 업무 수요가 자연스럽게 모이는 입지적 강점을 가진 항아리형 상권입니다.'
+    image: 'img/premium-04.jpg',
+    lead: '계양신도시 계획인구 약 4.3만명과 계양AX파크 첨단 산업단지',
+    headline: ['주거와 업무의 만남', '직주 근접형 항아리 상권'],
+    desc: '주거와 업무 수요가 함께하는 상권 입지의 강점을 가진 24시 항아리형 상권입니다.'
   },
   {
-    id: '05',
-    image: './img/premium-05.jpg',
-    lead: '안정적인 상권 활성화 기대',
-    headline: ['마스터리스', '확정수익 보장 (계획)'],
-    desc: '마스터리스를 통한 확정 수익 구조로 투자 안정성을 높인 상품입니다.'
+    image: 'img/premium-05.jpg',
+    lead: '안정적인 상가 수익 기대',
+    headline: ['계약 시 임대 계약', '확정수익 보장'],
+    desc: '마스터리스에 의한 시행사와 임대 계약으로 확정된 투자 수익 구조로 안심 투자를 기대할 수 있습니다.'
   },
   {
-    id: '06',
-    image: './img/premium-06.jpg',
-    lead: '판교 약 1.4배 규모',
-    headline: ['첨단산업단지 계양AX파크', '풍부한 배후수요'],
-    desc: '대규모 첨단산업단지를 배후로 두어 고정적이고 질 높은 수요를 확보합니다.'
+    image: 'img/premium-06.jpg',
+    lead: '판교 약 1.4배 규모의 AI관련 산업단지',
+    headline: ['첨단산업단지 계양AX파크', '소비성 높은 젊은 배후수요'],
+    desc: '대규모 AI전환 첨단산업단지를 배후로 두어 왕성한 젊은 소비계층에 의한 안정된 높은 수요이 전망됩니다.'
   },
   {
-    id: '07',
-    image: './img/premium-07.jpg',
-    lead: '계약 즉시, 수익이 발생하는 이자 지원 혜택',
-    headline: ['계약금 이자 지원제', '(계획)'],
-    desc: '계약과 동시에 이자 지원 혜택이 적용되어 초기 부담을 크게 줄여줍니다.'
+    image: 'img/premium-07.jpg',
+    lead: '계약 시점부터, 투자 수익이 발생하는 이자 지원 혜택',
+    headline: ['입주 시까지 혜택주는', '계약금 이자 지원제'],
+    desc: '계약과 동시에 계약금에 지원되는 이자 혜택으로 바로 실현되는 투자 수익으로 초기 부담이 크게 줄여듭니다.'
   },
   {
-    id: '08',
-    image: './img/premium-08.jpg',
-    lead: '문화공원이 앞에, 유·초·중(예정)은 옆에',
-    headline: ['걷고 배우고 머무는', '일상생활을 잇는 중심'],
-    desc: '공원과 학교가 인접한 생활 밀착형 입지로, 일상과 상권이 자연스럽게 연결됩니다.'
+    image: 'img/premium-08.jpg',
+    lead: '보행자 중심의 선형 공원과 함께, 유·초·중(예정)은 옆에',
+    headline: ['스트릿트 상권 효과', '생활과 소비를 잇는 중심 공간'],
+    desc: '걷고, 쉬면서 사람을 모으는 선형 공원의 집객 효과와 교육관련 특화된 업종까지 기대할 수 있는 밀착형 상권이 안정된 상권을 기대할 수 있습니다.'
   }
 ];
 
-class PremiumSlider {
-  constructor() {
-    this.track = document.getElementById('premiumTrack');
-    this.prevBtn = document.getElementById('prevBtn');
-    this.nextBtn = document.getElementById('nextBtn');
-    this.currentNum = document.getElementById('currentNum');
-    this.totalNum = document.getElementById('totalNum');
+function initHeader() {
+  const header = document.querySelector('#navbar');
 
-    this.total = PREMIUM_DATA.length;
-    this.current = 1;          // 복제본 때문에 1부터 시작
-    this.isAnimating = false;
-    this.autoplayDelay = 4500;
-    this.timer = null;
-
-    this.init();
+  function updateVisibility() {
+    header.classList.toggle('navbar--out', window.scrollY > header.offsetHeight);
   }
 
-  init() {
-    this.renderSlides();
-    this.totalNum.textContent = String(this.total).padStart(2, '0');
-    this.updatePosition(false);
-    this.updateActiveClass();
-    this.bindEvents();
-    this.startAutoplay();
-  }
+  updateVisibility();
+  window.addEventListener('scroll', updateVisibility, { passive: true });
+}
 
-  renderSlides() {
-    // 마지막 슬라이드 복제본 (맨 앞)
-    const lastClone = this.createSlide(PREMIUM_DATA[this.total - 1], true);
-    // 첫 슬라이드 복제본 (맨 뒤)
-    const firstClone = this.createSlide(PREMIUM_DATA[0], true);
+function initPerspective() {
+  const images = document.querySelectorAll('.fade__img');
+  let current = 0;
 
-    const slidesHTML = PREMIUM_DATA.map(item => this.createSlide(item)).join('');
+  setInterval(() => {
+    images[current].classList.remove('active');
+    current = (current + 1) % images.length;
+    images[current].classList.add('active');
+  }, 5000);
+}
 
-    this.track.innerHTML = lastClone + slidesHTML + firstClone;
-    this.slides = [...this.track.children];
-  }
+function renderSlide({ image, lead, headline, desc }, index, label) {
+  const number = String(index + 1).padStart(2, '0');
 
-  createSlide(data, isClone = false) {
-    const headlineHTML = data.headline
-      .map(line => `<span>${line}</span>`)
-      .join('');
-
-    return `
-      <article class="premium-slide${isClone ? ' clone' : ''}" data-id="${data.id}">
-        <div class="slide-visual">
-          <img src="${data.image}" alt="PREMIUM ${data.id}" loading="lazy">
+  return `
+    <article class="carousel__slide">
+      <div class="carousel__visual">
+        <img src="${image}" alt="${label} ${number}" loading="lazy">
+      </div>
+      <div class="carousel__content">
+        <div class="carousel__label">
+          <span>${label}</span>
+          <strong>${number}</strong>
         </div>
-        <div class="slide-content">
-          <div class="premium-label">
-            <span>PREMIUM</span>
-            <strong>${data.id}</strong>
-          </div>
-          <p class="premium-lead">${data.lead}</p>
-          <h3 class="premium-headline">${headlineHTML}</h3>
-          <p class="premium-desc">${data.desc}</p>
-        </div>
-      </article>
-    `;
+        <p class="carousel__lead">${lead}</p>
+        <h3 class="carousel__headline">${headline.map(line => `<span>${line}</span>`).join('')}</h3>
+        <p class="carousel__desc">${desc}</p>
+      </div>
+    </article>`;
+}
+
+function initCarousel(carousel, data, label) {
+  const track = carousel.querySelector('.carousel__track');
+  const currentNumber = carousel.querySelector('.carousel__current');
+  const total = data.length;
+  const slideMarkup = data.map((slide, index) => renderSlide(slide, index, label));
+  let current = 1;
+  let isAnimating = false;
+  let isHovered = false;
+  let touchStartX;
+  let timer;
+
+  // The copies at either end let the track animate across the loop boundary.
+  track.innerHTML = [slideMarkup[total - 1], ...slideMarkup, slideMarkup[0]].join('');
+  const slides = Array.from(track.children);
+  slides[0].setAttribute('aria-hidden', 'true');
+  slides[total + 1].setAttribute('aria-hidden', 'true');
+  carousel.querySelector('.carousel__total').textContent = String(total).padStart(2, '0');
+
+  function updatePosition(animate) {
+    track.style.transition = animate ? '' : 'none';
+    track.style.transform = `translateX(-${current * 100}%)`;
+    const displayNumber = (current + total - 1) % total + 1;
+    currentNumber.textContent = String(displayNumber).padStart(2, '0');
+    slides.forEach((slide, index) => slide.classList.toggle('is-active', index === current));
   }
 
-  updatePosition(animate = true) {
-    this.track.style.transition = animate
-      ? 'transform 0.8s cubic-bezier(0.45, 0, 0.2, 1)'
-      : 'none';
+  function move(direction) {
+    if (isAnimating) return;
 
-    this.track.style.transform = `translateX(-${this.current * 100}%)`;
-    this.updateCount();
+    isAnimating = true;
+    current += direction;
+    updatePosition(true);
   }
 
-  updateCount() {
-    let displayIndex = this.current; 
-
-    if (this.current === 0) displayIndex = this.total;
-    if (this.current === this.total + 1) displayIndex = 1;
-
-    this.currentNum.textContent = String(displayIndex).padStart(2, '0');
-  }
-
-  updateActiveClass() {
-    this.slides.forEach((slide, i) => {
-      slide.classList.toggle('is-active', i === this.current);
-    });
-  }
-
-  goTo(index) {
-    if (this.isAnimating) return;
-    this.isAnimating = true;
-    this.current = index;
-    this.updatePosition(true);
-    this.updateActiveClass();
-  }
-
-  next() {
-    this.goTo(this.current + 1);
-  }
-
-  prev() {
-    this.goTo(this.current - 1);
-  }
-
-  handleTransitionEnd() {
-    this.isAnimating = false;
-
-    // 마지막 복제본 → 실제 첫 번째
-    if (this.current === this.total + 1) {
-      this.current = 1;
-      this.updatePosition(false);
-      this.updateActiveClass();
-    }
-
-    // 첫 복제본 → 실제 마지막
-    if (this.current === 0) {
-      this.current = this.total;
-      this.updatePosition(false);
-      this.updateActiveClass();
+  function restartAutoplay() {
+    clearInterval(timer);
+    if (!isHovered && touchStartX === undefined) {
+      timer = setInterval(() => move(1), 4500);
     }
   }
 
-  bindEvents() {
-    this.nextBtn.addEventListener('click', () => {
-      this.next();
-      this.resetAutoplay();
-    });
-
-    this.prevBtn.addEventListener('click', () => {
-      this.prev();
-      this.resetAutoplay();
-    });
-
-    this.track.addEventListener('transitionend', () => this.handleTransitionEnd());
-
-    // 터치 스와이프
-    let startX = 0;
-
-    this.track.addEventListener('touchstart', (e) => {
-      startX = e.touches[0].clientX;
-      this.stopAutoplay();
-    }, { passive: true });
-
-    this.track.addEventListener('touchend', (e) => {
-      const diff = startX - e.changedTouches[0].clientX;
-      if (Math.abs(diff) > 50) {
-        diff > 0 ? this.next() : this.prev();
-      }
-      this.startAutoplay();
-    });
-
-    // 키보드
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'ArrowRight') {
-        this.next();
-        this.resetAutoplay();
-      }
-      if (e.key === 'ArrowLeft') {
-        this.prev();
-        this.resetAutoplay();
-      }
-    });
-
-    // 호버 시 자동재생 일시정지
-    const slider = document.getElementById('premiumSlider');
-    slider.addEventListener('mouseenter', () => this.stopAutoplay());
-    slider.addEventListener('mouseleave', () => this.startAutoplay());
+  function navigate(direction) {
+    move(direction);
+    restartAutoplay();
   }
 
-  startAutoplay() {
-    this.stopAutoplay();
-    this.timer = setInterval(() => this.next(), this.autoplayDelay);
-  }
+  track.addEventListener('transitionend', event => {
+    if (event.target !== track || event.propertyName !== 'transform') return;
 
-  stopAutoplay() {
-    clearInterval(this.timer);
-  }
+    isAnimating = false;
+    if (current === 0 || current === total + 1) {
+      current = current === 0 ? total : 1;
+      updatePosition(false);
+    }
+  });
 
-  resetAutoplay() {
-    this.stopAutoplay();
-    this.startAutoplay();
-  }
+  carousel.querySelector('.carousel__prev').addEventListener('click', () => navigate(-1));
+  carousel.querySelector('.carousel__next').addEventListener('click', () => navigate(1));
+  carousel.addEventListener('keydown', event => {
+    if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
+
+    event.preventDefault();
+    navigate(event.key === 'ArrowRight' ? 1 : -1);
+  });
+
+  track.addEventListener('touchstart', event => {
+    touchStartX = event.touches[0].clientX;
+    restartAutoplay();
+  }, { passive: true });
+  track.addEventListener('touchend', event => {
+    const distance = touchStartX - event.changedTouches[0].clientX;
+    touchStartX = undefined;
+    if (Math.abs(distance) > 50) move(distance > 0 ? 1 : -1);
+    restartAutoplay();
+  });
+  track.addEventListener('touchcancel', () => {
+    touchStartX = undefined;
+    restartAutoplay();
+  });
+
+  carousel.addEventListener('mouseenter', () => {
+    isHovered = true;
+    restartAutoplay();
+  });
+  carousel.addEventListener('mouseleave', () => {
+    isHovered = false;
+    restartAutoplay();
+  });
+
+  updatePosition(false);
+  restartAutoplay();
 }
 
-// 실행
-document.addEventListener('DOMContentLoaded', () => {
-  new PremiumSlider();
-});
+function initUnitPlans() {
+  const section = document.querySelector('#unit__plan');
+  const viewport = section.querySelector('.unit__plan');
+  const track = viewport.querySelector('.slide__wrap');
+  const originals = Array.from(track.children);
+  const copyCount = 4;
+  const last = copyCount + originals.length - 1;
+  const duration = 300;
+  let current = copyCount;
+  let isAnimating = false;
+  let isHovered = false;
+  let timer;
 
-// utility function
-function scrollIntoView(selector) {
-  const scrollTo = document.querySelector(selector);
-  scrollTo.scrollIntoView({behavior : "smooth"});
+  const clone = slide => {
+    const copy = slide.cloneNode(true);
+    copy.setAttribute('aria-hidden', 'true');
+    return copy;
+  };
+  track.prepend(...originals.slice(-copyCount).map(clone));
+  track.append(...originals.slice(0, copyCount).map(clone));
+  const slides = Array.from(track.children);
+
+  function updatePosition(animate) {
+    track.style.transition = animate ? `transform ${duration}ms` : 'none';
+    const offset = slides[current].offsetLeft - slides[0].offsetLeft;
+    track.style.transform = `translateX(${-offset}px)`;
+    slides.forEach((slide, index) => slide.classList.toggle('active', index === current + 1));
+  }
+
+  function move(direction) {
+    if (isAnimating) return;
+
+    isAnimating = true;
+    current += direction;
+    updatePosition(true);
+
+    setTimeout(() => {
+      if (current < copyCount || current > last) {
+        current = current < copyCount ? last : copyCount;
+        updatePosition(false);
+      }
+      isAnimating = false;
+    }, duration);
+  }
+
+  function restartAutoplay() {
+    clearInterval(timer);
+    if (!isHovered) timer = setInterval(() => move(1), 3000);
+  }
+
+  section.querySelector('.preBtn').addEventListener('click', () => {
+    move(-1);
+    restartAutoplay();
+  });
+  section.querySelector('.nextBtn').addEventListener('click', () => {
+    move(1);
+    restartAutoplay();
+  });
+  viewport.addEventListener('mouseenter', () => {
+    isHovered = true;
+    restartAutoplay();
+  });
+  viewport.addEventListener('mouseleave', () => {
+    isHovered = false;
+    restartAutoplay();
+  });
+
+  updatePosition(false);
+  restartAutoplay();
 }
 
+function initSiteLayout() {
+  const track = document.querySelector('#track');
+  const dots = document.querySelectorAll('.dots .dot');
+  const total = dots.length;
+  let current = 0;
+
+  function showSlide(index) {
+    current = (index + total) % total;
+    track.style.transform = `translateX(-${current * 100}%)`;
+    dots.forEach((dot, index) => dot.classList.toggle('active', index === current));
+  }
+
+  document.querySelector('#prev__Btn').addEventListener('click', () => showSlide(current - 1));
+  document.querySelector('#next__Btn').addEventListener('click', () => showSlide(current + 1));
+  dots.forEach((dot, index) => dot.addEventListener('click', () => showSlide(index)));
+}
+
+initHeader();
+initPerspective();
+initCarousel(document.querySelector('#Feature'), FEATURE_DATA, 'FEATURE');
+initUnitPlans();
+initSiteLayout();
+initCarousel(document.querySelector('#premium'), PREMIUM_DATA, 'PREMIUM');

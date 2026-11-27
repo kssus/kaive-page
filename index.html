@@ -4,172 +4,128 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
-  <link rel="shortcut icon" href="img/favicon-removebg-preview.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Mono:ital,wght@0,200..800;1,200..800&family=Noto+Serif+KR:wght@200..900&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
   <script src="https://kit.fontawesome.com/be050517f7.js" crossorigin="anonymous"></script>
   <script src="main.js" defer></script>
   <title>풍무 해링턴 플레이스</title>
 </head>
 <body>
-  <!-- Navbar -->
-  <nav id="navbar">
+  <header id="navbar">
     <div class="navbar__logo">
-        <img src="img/logo-w.png" class="title_logo" alt="풍무 해링턴" />
-        <a href="#" class="navbar__title">상업시설</a>
+      <img src="img/logo-w.png" alt="풍무 해링턴">
+      <span class="navbar__title">상업시설</span>
     </div>
-    <ul class="navbar__menu">
-      <li class="navbar__menu-item" data-link="#home">Home</li>
-      <li class="navbar__menu-item" data-link="#about">About</li>
-      <li class="navbar__menu-item" data-link="#skills">Skills</li>
-      <li class="navbar__menu-item" data-link="#mywork">Mywork</li>
-      <li class="navbar__menu-item" data-link="#testimonials">Testimonials</li>
-      <li class="navbar__menu-item" data-link="#Appendix">Appendix</li>
-      <li class="navbar__menu-item" data-link="#contact">Contact</li>
-    </ul>
-  </nav> 
+  </header>
 
-  <!-- Home -->
-  <section id="perspective">    
-      <img src="img/1793256023758.png" class="fade__img active" alt="투시도1">
-      <img src="img/about_slide01.png" class="fade__img" alt="투시도2">
-    <span class="perspecDesc">계양 카이브 유보라<br> 아파트 & 상업시설 선착순 분양 </span>
+  <section id="perspective">
+    <img src="img/1793256023758.png" class="fade__img active" alt="투시도 1">
+    <img src="img/about_slide01.png" class="fade__img" alt="투시도 2">
+    <span class="perspecDesc">계양 카이브 유보라<br>아파트 &amp; 상업시설 선착순 분양</span>
   </section>
 
-   <!-- Location -->
-    <section id="location" class="section">
-      <div class="locationDesc">
-       <p class="home__description">대장홍대선, <br>더블 역세권 대단지 프리미엄</p>
-       <h2 class="home__title">계양신도시 카이브 유보라</h2>
-     </div>
-     <div class="location">
-       <img src="img/environment.png" class="locationImg" alt="위치 이미지">
+  <section id="location" class="section">
+    <div class="locationDesc">
+      <p>대장홍대선 연장(예정), 인천지하철 박촌역 <br>더블 역세권 대단지 프리미엄</p>
+      <h2>계양신도시 카이브 유보라</h2>
+    </div>
+    <div class="location">
+      <img src="img/environment.png" class="locationImg" alt="위치 이미지">
+    </div>
+  </section>
+
+  <section id="Feature" class="carousel" aria-label="입지 특장점">
+    <div class="carousel__track"></div>
+    <div class="carousel__nav">
+      <button type="button" class="nav-btn carousel__prev" aria-label="이전 슬라이드">
+        <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <div class="carousel__count">
+        <span class="carousel__current"></span>
+        <span class="divider">/</span>
+        <span class="carousel__total"></span>
+      </div>
+      <button type="button" class="nav-btn carousel__next" aria-label="다음 슬라이드">
+        <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+  </section>
+
+  <section id="unit__plan" class="section" aria-label="세대 평면도">
+    <div class="unit__plan">
+      <div class="slide__wrap">
+        <img src="img/84a.png" alt="84A 평면도" class="slideItem">
+        <img src="img/84b.png" alt="84B 평면도" class="slideItem">
+        <img src="img/84c.png" alt="84C 평면도" class="slideItem">
+        <img src="img/84d.png" alt="84D 평면도" class="slideItem">
+        <img src="img/84e.png" alt="84E 평면도" class="slideItem">
+        <img src="img/92a.png" alt="92A 평면도" class="slideItem">
+        <img src="img/93a.png" alt="93A 평면도" class="slideItem">
+        <img src="img/93b.png" alt="93B 평면도" class="slideItem">
       </div>
     </div>
-
-    <!-- <div class="popup__contact">
-        <img src="img/meta-story.png" alt="">
-        <button type="button" class="btn-close">창 닫기 ×</button>
-      </div>
-    </div> -->
+    <div class="btn__container">
+      <button type="button" class="unit-btn preBtn" aria-label="이전 평면도">
+        <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
+      </button>
+      <button type="button" class="unit-btn nextBtn" aria-label="다음 평면도">
+        <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+      </button>
+    </div>
   </section>
 
-  <!-- Feature -->
-  <section id="Feature">
-    <article class="Feature-section">
-      <div class="Feature-slider" id="FeatureSlider">
-        <div class="Feature-track" id="p__Track">
-          <!-- 슬라이드는 JS에서 생성 -->
-        </div>
-
-        <!-- 네비게이션 -->
-        <div class="Feature-nav">
-          <button class="nav-btn prev" id="p__Btn" aria-label="이전">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-              <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </button>
-          <div class="Feature-count">
-            <span id="curr__Num">01</span>`
-            <span class="divider">/</span>
-            <span id="total__Num">08</span>
-          </div>
-          <button class="nav-btn next" id="n__Btn" aria-label="다음">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-              <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </button>
-        </div>
-    </article>
-  </section>
-  
-  <!-- Unit plan -->
-  <section id="unit__plan" class="section">    
-    <!-- <div class="section__container unit">      -->
-      <div class="unit__plan">
-        <div class="slide__wrap">
-          <img src="img/84a.png" alt="84a평면도" class="slideItem unit1">
-          <img src="img/84b.png" alt="84b평면도" class="slideItem unit2">
-          <img src="img/84c.png" alt="84c평면도" class="slideItem unit3">
-          <img src="img/84d.png" alt="84d평면도" class="slideItem unit4">
-          <img src="img/84e.png" alt="84e평면도" class="slideItem unit5">
-          <img src="img/92a.png" alt="92a평면도" class="slideItem unit6">
-          <img src="img/93a.png" alt="93a평면도" class="slideItem unit7">
-          <img src="img/93b.png" alt="93b평면도" class="slideItem unit8">
-        </div>
-        </div>
-        <div class="btn__container">
-          <button class="slide__Btn preBtn">
-            <i class="fa-solid fa-chevron-right"></i>
-          </button>
-          <button class="slide__Btn nextBtn">
-            <i class="fa-solid fa-chevron-left"></i>
-          </button>
-          <ul class="slide__pagination"></ul>
-        </div>
-      </div>
-    <!-- </div> -->
-  </section>    
-    
-   <!-- Site layout plan -->
-  <section class="layout section">
-    <h3 class="layout__plan">3블록 & 4블록 배치도</h3>
+  <section class="section">
+    <h3 class="layout__plan">3블록 &amp; 4블록 배치도</h3>
     <div class="slide-view section__container">
-      <div class="slider-track " id="track">
+      <div class="slider-track" id="track">
         <div class="slide">
-          <img src="img/design_img01.jpg" alt="이미지 1">
+          <img src="img/design_img01.jpg" alt="3블록 배치도">
         </div>
         <div class="slide">
-          <img src="img/design_img02.jpg" alt="이미지 2">
+          <img src="img/design_img02.jpg" alt="4블록 배치도">
         </div>
-      </div> 
+      </div>
 
-      <button class="layoutBtn prev" id="prev__Btn" aria-label="이전 슬라이드">
-        <i class="fa-solid fa-arrow-left-long fa-2x"></i>
+      <button type="button" class="layoutBtn prev" id="prev__Btn" aria-label="이전 슬라이드">
+        <i class="fa-solid fa-arrow-left-long fa-2x" aria-hidden="true"></i>
       </button>
-      <button class="layoutBtn next" id="next__Btn" aria-label="다음 슬라이드">
-        <i class="fa-solid fa-arrow-right-long fa-2x"></i>
+      <button type="button" class="layoutBtn next" id="next__Btn" aria-label="다음 슬라이드">
+        <i class="fa-solid fa-arrow-right-long fa-2x" aria-hidden="true"></i>
       </button>
-      
+
       <div class="dots">
-        <button class="dot active" data-index="0"></button>
-        <button class="dot" data-index="1"></button>
+        <button type="button" class="dot active" aria-label="3블록 배치도 보기"></button>
+        <button type="button" class="dot" aria-label="4블록 배치도 보기"></button>
       </div>
     </div>
   </section>
-  
-  <!-- Premium -->
-  <section id="premium">
-    <article class="premium-section">
-      <div class="premium-slider" id="premiumSlider">
-        <div class="premium-track" id="premiumTrack">
-          <!-- 슬라이드는 JS에서 생성 -->
-        </div>
 
-        <!-- 네비게이션 -->
-        <div class="premium-nav">
-          <button class="nav-btn prev" id="prevBtn" aria-label="이전">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-              <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </button>
-          <div class="premium-count">
-            <span id="currentNum">01</span>
-            <span class="divider">/</span>
-            <span id="totalNum">08</span>
-          </div>
-          <button class="nav-btn next" id="nextBtn" aria-label="다음">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-              <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </button>
-        </div>
-    </article>
+  <section id="premium" class="carousel" aria-label="상업시설 프리미엄">
+    <div class="carousel__track"></div>
+    <div class="carousel__nav">
+      <button type="button" class="nav-btn carousel__prev" aria-label="이전 슬라이드">
+        <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <div class="carousel__count">
+        <span class="carousel__current"></span>
+        <span class="divider">/</span>
+        <span class="carousel__total"></span>
+      </div>
+      <button type="button" class="nav-btn carousel__next" aria-label="다음 슬라이드">
+        <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
   </section>
-  
-  <!-- Complex -->
+
   <section id="complex" class="section">
     <div class="section__container">
       <article class="complex_plan">
@@ -189,31 +145,20 @@
     </div>
   </section>
 
-  
-
-  <!-- Contact -->
   <section id="contact" class="section">
-    <div class="section__container ">
+    <div class="section__container">
       <div class="contact__content">
         <img src="img/white_logo.png" class="white-logo" alt="로고">
         <h2>풍무 해링턴플레이스</h2>
-        <div class="contact__link">
-          <a href="#">
-            <i class="fa-brands fa-github"></i>
-          </a>
-          <a href="">
-            <i class="fa-brands fa-linkedin"></i>          
-          </a>
-        </div>
-        <p class="contact__rights">2026 Dream Coding - All rights reserved</p>
+        <p>2026 Dream Coding - All rights reserved</p>
       </div>
-    </div>      
-    <div class="phone_box" >
-      <div class="phone_icon" href="tel:010-9505-6242">
-        <i class="fa-solid fa-phone fa-lg"></i>
-      </div>
-      <span class="phone_content">문의 및 방문예약</span>
     </div>
+    <a class="phone_box" href="tel:010-9505-6242">
+      <span class="phone_icon" aria-hidden="true">
+        <i class="fa-solid fa-phone fa-lg"></i>
+      </span>
+      <span class="phone_content">문의 및 방문예약</span>
+    </a>
   </section>
 </body>
 </html>
