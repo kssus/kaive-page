@@ -103,6 +103,10 @@ p {
   white-space: nowrap;
 }
 
+.navbar__toggle {
+  display: none;
+}
+
 .navbar__menu {
   display: flex;
   align-items: center;
@@ -136,7 +140,8 @@ p {
   text-underline-offset: 0.2em;
 }
 
-#navbar a:focus-visible {
+#navbar a:focus-visible,
+#navbar button:focus-visible {
   outline: 2px solid currentColor;
   outline-offset: -2px;
 }
@@ -273,18 +278,18 @@ p {
   font-size: 0.875rem;
 }
 
-.location-shell__map a {
+.location-shell__enlarge {
   display: inline-flex;
   min-height: 44px;
   align-items: center;
-  gap: 0.4rem;
   color: var(--location-ink);
+  font: inherit;
   font-weight: 700;
   text-decoration: underline;
   text-underline-offset: 0.2em;
 }
 
-.location-shell__map a:focus-visible {
+.location-shell__enlarge:focus-visible {
   outline: 2px solid currentColor;
   outline-offset: 3px;
 }
@@ -331,10 +336,18 @@ p {
   overflow: hidden;
 }
 
+.carousel:not(.is-ready) .carousel__nav {
+  display: none;
+}
+
 .carousel__track {
-  display: flex;
+  display: grid;
   transition: transform 0.8s cubic-bezier(0.45, 0, 0.2, 1);
   will-change: transform;
+}
+
+.carousel.is-ready .carousel__track {
+  display: flex;
 }
 
 .carousel__slide {
@@ -476,6 +489,8 @@ p {
 
 .layout__plan {
   margin-top: 40px;
+  font-size: var(--font-regular);
+  font-weight: var(--weight-semi-bold);
 }
 
 .slide-view {
@@ -486,7 +501,6 @@ p {
 }
 
 .slider-track {
-  padding: 0 0 50px;
   display: flex;
   transition: transform 0.5s ease;
 }
@@ -497,51 +511,128 @@ p {
 
 .slide img {
   width: 100%;
-  max-height: 100%;
-  object-fit: cover;
+  height: auto;
   display: block;
 }
 
+.layout__enlarge,
+.layout__preview-actions button {
+  min-height: 44px;
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  background: var(--color-shade-grey);
+  color: var(--color-white);
+  font: inherit;
+  font-weight: 600;
+}
+
+.layout__enlarge {
+  display: none;
+}
+
+.layout__controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0.75rem auto;
+}
+
 .layoutBtn {
-  position: relative;
-  top: 50%;
-  transform: translateY(-50%);
-  text-align: center;
-  cursor: pointer;
-  z-index: 10;
+  display: grid;
+  width: 44px;
+  height: 44px;
+  place-items: center;
+  border: 1px solid rgb(0 0 0 / 18%);
+  border-radius: 50%;
+  background: var(--color-white);
+  color: var(--color-shade-grey);
 }
 
-.layoutBtn.prev {
-  left: -15px;
+.layoutBtn::before {
+  content: "";
+  width: 9px;
+  height: 9px;
+  border: solid currentColor;
+  border-width: 0 2px 2px 0;
+  transform: translateX(-2px) rotate(-45deg);
 }
 
-.layoutBtn.next {
-  right: -15px;
+.layoutBtn.prev::before {
+  transform: translateX(2px) rotate(135deg);
+}
+
+.layoutBtn:hover {
+  background: var(--color-shade-grey);
+  color: var(--color-white);
 }
 
 .dots {
-  position: relative;
-  bottom: 54px;
-  left: 50%;
-  transform: translateX(-50%);
   display: flex;
-  justify-content: center;
-  gap: 35px;
 }
 
 .dot {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  border: none;
-  background: rgba(255, 255, 255, 0.4);
-  cursor: pointer;
-  padding: 0;
-  transition: background 0.2s;
+  display: grid;
+  width: 32px;
+  height: 44px;
+  place-items: center;
 }
 
-.dot.active {
-  background: rgba(4, 84, 24, 0.5);
+.dot::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 1px solid var(--color-shade-grey);
+}
+
+.dot.active::before {
+  background: var(--color-shade-grey);
+}
+
+.layout__preview {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100dvh;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  overflow: hidden;
+  border: 0;
+}
+
+.layout__preview[open] {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+}
+
+.layout__preview::backdrop {
+  background: rgb(0 0 0 / 76%);
+}
+
+.layout__preview-actions {
+  display: flex;
+  justify-content: flex-end;
+  padding: calc(0.375rem + env(safe-area-inset-top)) 0.75rem 0.375rem;
+}
+
+.layout__preview-scroll {
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+  overscroll-behavior-x: contain;
+  touch-action: pan-x pinch-zoom;
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.layout__preview-scroll img {
+  display: block;
+  flex: none;
+  width: auto;
+  height: 100%;
+  max-width: none;
+  margin-inline: auto;
 }
 
 #unit {
@@ -748,6 +839,66 @@ p {
 }
 
 @media (max-width: 768px) {
+  :root {
+    --navbar-height: 4.25rem;
+    --mobile-inquiry-height: 3.5rem;
+    scroll-padding-bottom: calc(var(--mobile-inquiry-height) + env(safe-area-inset-bottom));
+  }
+
+  body {
+    padding-bottom: calc(var(--mobile-inquiry-height) + env(safe-area-inset-bottom));
+  }
+
+  #navbar {
+    grid-template-rows: 1fr;
+  }
+
+  .navbar__toggle {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 0.25rem;
+    color: inherit;
+  }
+
+  .navbar__toggle span {
+    width: 22px;
+    height: 2px;
+    background-color: currentColor;
+    box-shadow: 0 -6px currentColor, 0 6px currentColor;
+  }
+
+  .navbar__menu {
+    display: none;
+    position: absolute;
+    inset: 100% 0 auto;
+    grid-area: auto;
+    max-height: calc(100dvh - var(--navbar-height) - var(--mobile-inquiry-height) - env(safe-area-inset-bottom));
+    overflow-y: auto;
+    padding: 0.5rem 0.75rem;
+    background-color: var(--color-shade-grey);
+  }
+
+  .navbar__toggle[aria-expanded="true"] + .navbar__menu {
+    display: grid;
+    justify-content: stretch;
+  }
+
+  .navbar__phone {
+    position: fixed;
+    inset: auto 0 0;
+    grid-area: auto;
+    justify-self: stretch;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(var(--mobile-inquiry-height) + env(safe-area-inset-bottom));
+    padding: 0.5rem 1rem calc(0.5rem + env(safe-area-inset-bottom));
+    background-color: var(--color-shade-grey);
+    border-top: 1px solid rgb(255 255 255 / 24%);
+  }
+
   h2 {
     font-size: 18px;
   }
@@ -766,13 +917,43 @@ p {
     font-size: 18px;
   }
 
+  #layout {
+    padding-inline: 16px;
+  }
+
+  .layout__enlarge {
+    display: inline-block;
+    margin-top: 1rem;
+  }
+
   #unit {
-    background-position: 36%;
+    height: auto;
+    padding: 0 16px 24px;
+    background-position: 36% top;
   }
 
   .unit__plan {
     position: relative;
-    margin: 20px auto 0;
+    margin: 0 auto;
+    padding: 130px 0 20px;
+  }
+
+  .slide__wrap {
+    flex: 0 0 100%;
+    min-width: 0;
+    padding-top: 0;
+  }
+
+  .slideItem {
+    flex: none;
+    width: min(397px, calc(100% - 32px));
+    height: auto;
+    aspect-ratio: 397 / 455;
+    object-fit: contain;
+  }
+
+  .slideItem.active {
+    transform: scale(1);
   }
 }
 
