@@ -78,15 +78,24 @@ const PREMIUM_DATA = [
   }
 ];
 
-function initHeader() {
-  const header = document.querySelector('#navbar');
+function initSectionNavigation() {
+  document.querySelector('#navbar').addEventListener('click', event => {
+    if (event.defaultPrevented || event.button !== 0 ||
+        event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
 
-  function updateVisibility() {
-    header.classList.toggle('navbar--out', window.scrollY > header.offsetHeight);
-  }
+    const link = event.target.closest('a[href^="#"]');
+    if (!link) return;
 
-  updateVisibility();
-  window.addEventListener('scroll', updateVisibility, { passive: true });
+    const section = document.getElementById(link.hash.slice(1));
+    if (!section) return;
+
+    event.preventDefault();
+    if (window.location.hash !== link.hash) {
+      history.pushState(null, '', link.hash);
+    }
+    section.focus({ preventScroll: true });
+    section.scrollIntoView({ block: 'start' });
+  });
 }
 
 function initPerspective() {
@@ -214,7 +223,7 @@ function initCarousel(carousel, data, label) {
 }
 
 function initUnitPlans() {
-  const section = document.querySelector('#unit__plan');
+  const section = document.querySelector('#unit');
   const viewport = section.querySelector('.unit__plan');
   const track = viewport.querySelector('.slide__wrap');
   const originals = Array.from(track.children);
@@ -301,9 +310,9 @@ function initSiteLayout() {
   dots.forEach((dot, index) => dot.addEventListener('click', () => showSlide(index)));
 }
 
-initHeader();
+initSectionNavigation();
 initPerspective();
 initCarousel(document.querySelector('#Feature'), FEATURE_DATA, 'FEATURE');
 initUnitPlans();
 initSiteLayout();
-initCarousel(document.querySelector('#premium'), PREMIUM_DATA, 'PREMIUM');
+initCarousel(document.querySelector('#comercial'), PREMIUM_DATA, 'PREMIUM');

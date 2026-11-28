@@ -13,29 +13,88 @@
 </head>
 <body>
   <header id="navbar">
-    <div class="navbar__logo">
-      <img src="img/logo-w.png" alt="풍무 해링턴">
+    <a class="navbar__logo" href="#home" aria-label="홈">
+      <img src="img/logo-w.png" alt="" width="110" height="35">
       <span class="navbar__title">상업시설</span>
-    </div>
+    </a>
+    <nav class="navbar__menu" aria-label="섹션 메뉴">
+      <a href="#home">홈</a>
+      <a href="#location">입지환경</a>
+      <a href="#Feature">입지 특장점</a>
+      <a href="#unit">평면도</a>
+      <a href="#layout">단지 배치도</a>
+      <a href="#comercial">상업시설</a>
+    </nav>
+    <a class="navbar__phone" href="tel:01095056242">분양문의 9505-6242</a>
   </header>
 
-  <section id="perspective">
+  <section id="home" tabindex="-1">
     <img src="img/1793256023758.png" class="fade__img active" alt="투시도 1">
     <img src="img/about_slide01.png" class="fade__img" alt="투시도 2">
     <span class="perspecDesc">계양 카이브 유보라<br>아파트 &amp; 상업시설 선착순 분양</span>
   </section>
 
-  <section id="location" class="section">
-    <div class="locationDesc">
-      <p>대장홍대선 연장(예정), 인천지하철 박촌역 <br>더블 역세권 대단지 프리미엄</p>
-      <h2>계양신도시 카이브 유보라</h2>
-    </div>
-    <div class="location">
-      <img src="img/environment.png" class="locationImg" alt="위치 이미지">
+  <section id="location" class="location-shell" aria-labelledby="location-title" tabindex="-1">
+    <div class="location-shell__inner">
+      <div class="location-shell__overview">
+        <header class="location-shell__intro">
+          <p class="location-shell__label">입지환경</p>
+          <h2 id="location-title">계양신도시<br>카이브 유보라</h2>
+          <p class="location-shell__summary">인천 1호선 박촌역에서 공항철도로 환승해 서울로 이동할 수 있습니다. 단지 주변에는 선형공원과 교육시설 조성이 계획되어 있습니다.</p>
+          <dl class="location-shell__transit" aria-label="박촌역 출발 기준 환승 경로">
+            <div>
+              <dt>김포공항역</dt>
+              <dd><strong>3</strong>정거장</dd>
+            </div>
+            <div>
+              <dt>마곡나루역</dt>
+              <dd><strong>4</strong>정거장</dd>
+            </div>
+          </dl>
+          <p class="location-shell__transfer">계양역에서 공항철도 환승</p>
+        </header>
+
+        <figure class="location-shell__map">
+          <img src="img/environment.png" width="1060" height="677" loading="lazy" decoding="async"
+            alt="인천 1호선 박촌역과 계양신도시 카이브 유보라 단지, 주변 광역 교통망을 표시한 입지 지도">
+          <figcaption>
+            <span>계양신도시 광역 입지 지도</span>
+            <a href="img/environment.jpg" target="_blank" rel="noopener" aria-label="지도 크게 보기 (새 탭)">지도 크게 보기 <span aria-hidden="true">↗</span></a>
+          </figcaption>
+        </figure>
+      </div>
+
+      <ul class="location-shell__highlights" aria-label="입지 특장점">
+        <li>
+          <h3>박촌역과 광역 교통망</h3>
+          <p>인천 1호선을 이용할 수 있으며 대장홍대선 연장이 추진 중입니다.</p>
+        </li>
+        <li>
+          <h3>계양신도시 생활권</h3>
+          <p>단지 주변으로 주거와 교육, 녹지를 연결하는 생활권이 조성될 예정입니다.</p>
+        </li>
+        <li>
+          <h3>계양벼리 선형공원</h3>
+          <p>신도시를 따라 이어지는 선형공원과 보행 중심 녹지축이 계획되어 있습니다.</p>
+        </li>
+        <li>
+          <h3>유치원·초등학교·중학교</h3>
+          <p>단지 인근에 유치원과 초등학교, 중학교가 들어설 예정입니다.</p>
+        </li>
+        <li>
+          <h3>계양AX파크</h3>
+          <p>계양신도시에 AI 관련 기업과 연구시설이 들어서는 첨단산업 거점이 추진되고 있습니다.</p>
+        </li>
+        <li>
+          <h3>단지 내 상업시설</h3>
+          <p>단지 안에 반도건설의 상업시설 브랜드 몰 ‘시간’이 들어설 예정입니다.</p>
+        </li>
+      </ul>
+      <p class="location-shell__note">교통·교육·공원 등 개발 계획은 관계 기관의 사정에 따라 변경될 수 있습니다.</p>
     </div>
   </section>
 
-  <section id="Feature" class="carousel" aria-label="입지 특장점">
+  <section id="Feature" class="carousel" aria-label="입지 특장점" tabindex="-1">
     <div class="carousel__track"></div>
     <div class="carousel__nav">
       <button type="button" class="nav-btn carousel__prev" aria-label="이전 슬라이드">
@@ -56,7 +115,7 @@
     </div>
   </section>
 
-  <section id="unit__plan" class="section" aria-label="세대 평면도">
+  <section id="unit" class="section" aria-label="세대 평면도" tabindex="-1">
     <div class="unit__plan">
       <div class="slide__wrap">
         <img src="img/84a.png" alt="84A 평면도" class="slideItem">
@@ -79,8 +138,8 @@
     </div>
   </section>
 
-  <section class="section">
-    <h3 class="layout__plan">3블록 &amp; 4블록 배치도</h3>
+  <section id="layout" class="section" aria-labelledby="layout-title" tabindex="-1">
+    <h3 id="layout-title" class="layout__plan">3블록 &amp; 4블록 배치도</h3>
     <div class="slide-view section__container">
       <div class="slider-track" id="track">
         <div class="slide">
@@ -105,7 +164,7 @@
     </div>
   </section>
 
-  <section id="premium" class="carousel" aria-label="상업시설 프리미엄">
+  <section id="comercial" class="carousel" aria-label="상업시설 프리미엄" tabindex="-1">
     <div class="carousel__track"></div>
     <div class="carousel__nav">
       <button type="button" class="nav-btn carousel__prev" aria-label="이전 슬라이드">
@@ -126,39 +185,20 @@
     </div>
   </section>
 
-  <section id="complex" class="section">
-    <div class="section__container">
-      <article class="complex_plan">
-        <h2>에버랜드 테마파크같은 환상적인 조경</h2>
-        <p>에버랜드 테마파크 팀이 참여한 <br>플로팅 아일랜드와 티하우스가 함께하는 해링턴라운지, <br>라운드형 조형 폰드와 캐스켸이드의 역동적인 수경조경 해링턴플라자와 아뜰리에</p>
-        <div class="theme_plan">
-          <img src="img/plan1.jpg" alt="" class="plan1">
-          <img src="img/plan2.jpg" alt="" class="plan2">
+  <footer id="contact" class="site-footer" tabindex="-1">
+    <div class="site-footer__inner">
+      <div class="site-footer__brand">
+        <img src="img/footer-logo.png" alt="BANDO 반도건설" width="128" height="30">
+        <div class="site-footer__details">
+          <p class="site-footer__name">계양신도시 카이브 유보라 모델하우스</p>
+          <p class="site-footer__notice">본 홈페이지의 이미지 및 내용은 소비자의 이해를 돕기 위한 것으로 실제와 다를 수 있습니다.</p>
         </div>
-        <h3>로스트밸리</h3>
-        <p>아이들의 상상력과 모험심을 키우는 에버랜드형 놀이공간</p>
-        <h3>워터그라운드</h3>
-        <p>워터건, 워터터널 등 다양한 놀이요소가 함께하는 물테마놀이터</p>
-        <h3>셀티스가든</h3>
-        <p>이색적인 팽나무숲 자연환경 그늘 아래에서 휴식할 수 있는 공간</p>
-      </article>
-    </div>
-  </section>
-
-  <section id="contact" class="section">
-    <div class="section__container">
-      <div class="contact__content">
-        <img src="img/white_logo.png" class="white-logo" alt="로고">
-        <h2>풍무 해링턴플레이스</h2>
-        <p>2026 Dream Coding - All rights reserved</p>
+      </div>
+      <div class="site-footer__contact">
+        <a href="tel:01095056242" class="site-footer__phone">분양문의 9505-6242</a>
+        <img src="img/footer-sikong.png" alt="시행·시공 반도건설" width="169" height="23">
       </div>
     </div>
-    <a class="phone_box" href="tel:010-9505-6242">
-      <span class="phone_icon" aria-hidden="true">
-        <i class="fa-solid fa-phone fa-lg"></i>
-      </span>
-      <span class="phone_content">문의 및 방문예약</span>
-    </a>
-  </section>
+  </footer>
 </body>
 </html>
